@@ -1,0 +1,18 @@
+name: sync-upstream
+on:
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync from zakird/crux-top-lists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh repo sync wangmm001/crux-top-lists-mirror --source zakird/crux-top-lists --branch main
