@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: "checkout"
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v5"
       - id: "python"
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
           cache: "pip"
@@ -17,7 +17,7 @@ jobs:
         run: pip install .
       - id: "auth"
         name: "Authenticate to Google Cloud"
-        uses: "google-github-actions/auth@v1"
+        uses: "google-github-actions/auth@v2"
         with:
           credentials_json: ${{ secrets.bq }}
       - id: "download"
